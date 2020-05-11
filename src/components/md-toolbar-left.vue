@@ -201,7 +201,7 @@
               @change="$imgAdd($event)"
               multiple="multiple"
             />
-            {{d_words.tl_upload}}
+            <span class="extral-text">{{d_words.tl_upload}}</span>
           </div>
 
           <div
@@ -560,6 +560,7 @@ export default {
     font-size: 14px;
     color: #606266;
     position: relative;
+    overflow: hidden;
 
     &:hover {
       color: #303133;
@@ -573,6 +574,23 @@ export default {
       top: 0;
       opacity: 0;
       cursor: pointer;
+      width: 100%;
+      height: 100%;
+      font-size: 14px;
+      z-index: 20;
+    }
+
+    .extral-text {
+      position: absolute;
+      font-size: 100px;
+      right: 0;
+      top: 0;
+      opacity: 1;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      font-size: 12px;
+      z-index: 10;
     }
   }
 
