@@ -287,42 +287,41 @@
       :title="`${d_words.tl_save} (ctrl+s)`"
     ></button>
     <slot name="left-toolbar-after" />
-
-    <!-- 添加image链接 -->
-    <transition name="fade">
-      <div class="add-image-link-wrapper" v-if="s_img_link_open">
-        <div class="add-image-link">
-          <i
-            @click.stop.prevent="s_img_link_open = false"
-            class="fa fa-mavon-times"
-            aria-hidden="true"
-          ></i>
-          <h3
-            class="title"
-          >{{link_type == 'link' ? d_words.tl_popup_link_title : d_words.tl_popup_img_link_title}}</h3>
-          <div class="link-text input-wrapper">
-            <input
-              ref="linkTextInput"
-              type="text"
-              v-model="link_text"
-              :placeholder="link_type == 'link' ? d_words.tl_popup_link_text : d_words.tl_popup_img_link_text"
-            />
-          </div>
-          <div class="link-addr input-wrapper">
-            <input
-              type="text"
-              v-model="link_addr"
-              :placeholder="link_type == 'link' ? d_words.tl_popup_link_addr : d_words.tl_popup_img_link_addr"
-            />
-          </div>
-          <div
-            class="op-btn cancel"
-            @click.stop="s_img_link_open = false"
-          >{{d_words.tl_popup_link_cancel}}</div>
-          <div class="op-btn sure" @click.stop="$imgLinkAdd()">{{d_words.tl_popup_link_sure}}</div>
-        </div>
+  <!-- 添加image链接 -->
+    <el-dialog :title="link_type == 'link' ? d_words.tl_popup_link_title : d_words.tl_popup_img_link_title"
+    :visible.sync="s_img_link_open"
+    :modal="false"
+    custom-class='markdown-dialog-add-img'
+    >
+      <el-form 
+      label-position="left"
+      size="small"
+      >
+        <el-form-item :label="link_type == 'link' ? d_words.tl_popup_link_text : d_words.tl_popup_img_link_text" label-width="80">
+          <el-input
+          autocomplete="off"
+          ref="linkTextInput"
+          type="text"
+          v-model="link_text"
+          size="small"
+          :placeholder="link_type == 'link' ? d_words.tl_popup_link_text : d_words.tl_popup_img_link_text"
+          ></el-input>
+        </el-form-item>
+         <el-form-item :label="link_type == 'link' ? d_words.tl_popup_link_addr : d_words.tl_popup_img_link_addr" label-width="80">
+          <el-input
+          autocomplete="off"
+          type="text"
+          size="small"
+          v-model="link_addr"
+          :placeholder="link_type == 'link' ? d_words.tl_popup_link_addr : d_words.tl_popup_img_link_addr"
+          ></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button size="small" @click.stop="s_img_link_open = false">{{d_words.tl_popup_link_cancel}}</el-button>
+        <el-button size="small" type="primary" @click.stop="$imgLinkAdd">{{d_words.tl_popup_link_sure}}</el-button>
       </div>
-    </transition>
+    </el-dialog>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -730,39 +729,14 @@ export default {
         padding-left: 10px;
       }
     }
+  }
+}
 
-    .op-btn {
-      width: 100px;
-      height: 35px;
-      display: inline-block;
-      margin-top: 30px;
-      cursor: pointer;
-      text-align: center;
-      line-height: @height;
-      opacity: 0.9;
-      border-radius: 2px;
-      letter-spacing: 1px;
-      font-size: 15px;
-    }
-
-    .op-btn.sure {
-      background: #fe9b43;
-      color: #fff;
-      margin-left: 5%;
-
-      &:hover {
-        opacity: 1;
-      }
-    }
-
-    .op-btn.cancel {
-      border: 1px solid #bcbcbc;
-      color: #bcbcbc;
-
-      &:hover {
-        color: #000;
-      }
-    }
+</style>
+<style lang="scss">
+.markdown-dialog-add-img{
+  .el-dialog__body{
+    padding:10px 20px;
   }
 }
 </style>

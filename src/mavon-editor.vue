@@ -96,7 +96,7 @@
             {{d_words.navigation_title}}
             <i
               @click="toolbar_right_click('navigation')"
-              class="fa fa-mavon-times v-note-navigation-close"
+              class="el-icon-close v-note-navigation-close"
               aria-hidden="true"
             ></i>
           </div>
@@ -115,7 +115,7 @@
           <div class="v-note-help-content markdown-body" :class="{'shadow': boxShadow}">
             <i
               @click.stop.prevent="toolbar_right_click('help')"
-              class="fa fa-mavon-times"
+              class="el-icon-close"
               aria-hidden="true"
             ></i>
             <div class="scroll-style v-note-help-show" v-html="d_help"></div>
@@ -170,12 +170,20 @@ import md_toolbar_right from './components/md-toolbar-right.vue'
 // Vue 中
 import Vue from 'vue';
 import {
-  Button
+  Button,
+  Input,
+  Dialog,
+   Form,
+  FormItem
 } from 'element-ui';
 import "./lib/font/css/fontello.css"
 import './lib/css/md.css'
 import "../theme/index.css"
 Vue.use(Button);
+Vue.use(Input);
+Vue.use(Dialog);
+Vue.use(Form);
+Vue.use(FormItem);
 const xss = require('xss');
 export default {
   mixins: [markdown],
@@ -782,5 +790,8 @@ export default {
 <style lang="scss" scoped>
 .auto-textarea-wrapper {
   height: 100%;
+}
+.v-note-navigation-close{
+  margin-top:16px;
 }
 </style>
