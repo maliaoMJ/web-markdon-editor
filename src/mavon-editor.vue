@@ -167,8 +167,15 @@ import markdown from './lib/mixins/markdown.js'
 
 import md_toolbar_left from './components/md-toolbar-left.vue'
 import md_toolbar_right from './components/md-toolbar-right.vue'
+// Vue 中
+import Vue from 'vue';
+import {
+  Button
+} from 'element-ui';
 import "./lib/font/css/fontello.css"
 import './lib/css/md.css'
+import "../theme/index.css"
+Vue.use(Button);
 const xss = require('xss');
 export default {
   mixins: [markdown],
@@ -772,7 +779,7 @@ export default {
 @import 'lib/css/scroll.styl';
 @import 'lib/css/mavon-editor.styl';
 </style>
-<style lang="css" scoped>
+<style lang="scss" scoped>
 .auto-textarea-wrapper {
   height: 100%;
 }
